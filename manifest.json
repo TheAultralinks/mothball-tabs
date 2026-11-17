@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Mothball Tabs",
   "short_name": "Mothball",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mothball your tabs: find duplicates, put idle tabs to sleep, group sites and save sessions. Runs entirely on your device.",
   "minimum_chrome_version": "104",
   "permissions": ["tabs", "storage", "tabGroups", "favicon"],

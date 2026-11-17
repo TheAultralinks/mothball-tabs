@@ -9,7 +9,7 @@
 
 import { findDuplicateGroups } from './core.js';
 import { runBatched, withTimeout } from './api.js';
-import { bumpStats } from './storage.js';
+import { addCollection, bumpStats } from './storage.js';
 import { debug, error as logError } from './log.js';
 
 const CLOSE_TIMEOUT_MS = 8000;
@@ -122,6 +122,26 @@ export async function groupTabsBySite(tabs) {
   }
 
   return result;
+}
+
+/**
+ * Saves a whole window as a named session.
+ *
+ * Throws only when there is genuinely nothing to save, so a keyboard shortcut can
+ * report "saved" or "nothing" instead of failing silently. The entries are passed
+ * through addCollection, which sanitises and caps them.
+ */
+export async function saveTabsAsSession(tabs, name, settings = null) {
+  const list = Array.isArray(tabs) ? tabs : [];
+  const entries = list
+    .filter((tab) => tab && typeof tab.url === 'string' && tab.url)
+    .map((tab) => ({ url: tab.url, title: tab.title, favIconUrl: tab.favIconUrl }));
+
+  if (!entries.length) throw new Error('Nothing to save: this window has no usable addresses.');
+
+  const saved = await addCollection({ name, tabs: entries }, settings);
+  debug('session saved', { name: saved.name, tabs: saved.tabs.length });
+  return saved;
 }
 
 /** Opens a saved session in a fresh window. */

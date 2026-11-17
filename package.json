@@ -1,6 +1,6 @@
 {
   "name": "mothball-tabs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "description": "Mothball Tabs — a local-only Chrome tab assistant. No build step, no dependencies.",
