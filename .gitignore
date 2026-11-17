@@ -1,0 +1,21 @@
+# Dependencies (there are none, but just in case)
+node_modules/
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build artefacts
+*.zip
+dist/
+build/
+
+# Local secrets — never commit these
+.env
+.env.*
+!.env.example
+
+# Editor folders
+.vscode/
+.idea/

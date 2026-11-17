@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mothball Tabs</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <span class="mark" aria-hidden="true"></span>
+      <h1>Mothball Tabs</h1>
+      <span class="grow"></span>
+      <button id="open-options" class="icon-btn" type="button" title="Settings" aria-label="Settings">⚙</button>
+    </header>
+
+    <p id="stats" class="stats"></p>
+
+    <div class="search-row">
+      <input
+        id="search"
+        type="search"
+        placeholder="Search tabs, sites, addresses…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Search tabs"
+      />
+      <button id="sort-toggle" class="chip" type="button" title="Change sort order">By site</button>
+    </div>
+
+    <section id="suggestions" class="suggestions" aria-label="Suggestions" aria-live="polite"></section>
+
+    <div class="toolbar">
+      <button id="select-all" class="chip" type="button">Select all</button>
+      <span class="grow"></span>
+      <button id="sleep-selected" class="btn" type="button" disabled>Sleep</button>
+      <button id="save-selected" class="btn" type="button" disabled>Save</button>
+      <button id="close-selected" class="btn danger" type="button" disabled>Close</button>
+    </div>
+
+    <main id="tab-list" class="tab-list" role="list" aria-label="Open tabs"></main>
+
+    <section class="collections">
+      <button id="collections-toggle" class="section-head" type="button" aria-expanded="false">
+        <span>Saved sessions</span>
+        <span id="collections-count" class="count">0</span>
+      </button>
+      <div id="collections-body" class="collections-body" hidden></div>
+    </section>
+
+    <div id="confirm-bar" class="confirm-bar" hidden>
+      <span id="confirm-text"></span>
+      <button id="confirm-yes" class="btn danger" type="button">Yes, do it</button>
+      <button id="confirm-no" class="chip" type="button">Cancel</button>
+    </div>
+
+    <footer class="foot">
+      <span id="status" class="status" role="status" aria-live="polite"></span>
+    </footer>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

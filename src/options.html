@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mothball Tabs — settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="head">
+        <h1>Mothball Tabs</h1>
+        <p class="sub">
+          Everything here is stored in this browser only. The extension has no server, no account and makes no network
+          requests.
+        </p>
+      </header>
+
+      <section class="panel">
+        <h2>What counts as tidy</h2>
+
+        <form id="settings-form" novalidate>
+          <div class="field">
+            <label for="idleDays">Suggest sleeping a tab after</label>
+            <div class="inline">
+              <input id="idleDays" name="idleDays" type="number" min="1" max="365" step="1" inputmode="numeric" />
+              <span class="hint">days without a visit</span>
+            </div>
+            <p class="hint">Sleeping keeps the tab in the strip but frees its memory. Nothing is closed.</p>
+          </div>
+
+          <div class="field">
+            <label for="groupThreshold">Suggest grouping a site with</label>
+            <div class="inline">
+              <input id="groupThreshold" name="groupThreshold" type="number" min="3" max="50" step="1" inputmode="numeric" />
+              <span class="hint">or more open tabs</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="protectedDomains">Never suggest closing or sleeping tabs from</label>
+            <textarea id="protectedDomains" name="protectedDomains" rows="4" spellcheck="false" placeholder="mail.google.com&#10;bank.example.com"></textarea>
+            <p class="hint">One domain per line. Subdomains are covered.</p>
+          </div>
+
+          <label class="check-row">
+            <input id="protectPinned" name="protectPinned" type="checkbox" />
+            <span>Always protect pinned tabs</span>
+          </label>
+
+          <label class="check-row">
+            <input id="confirmBulkClose" name="confirmBulkClose" type="checkbox" />
+            <span>Ask before closing more than one tab</span>
+          </label>
+
+          <label class="check-row">
+            <input id="debug" name="debug" type="checkbox" />
+            <span>Write debug details to the console</span>
+          </label>
+
+          <div class="actions">
+            <button class="btn primary" type="submit">Save settings</button>
+            <span id="save-status" class="status" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Saved sessions</h2>
+        <p class="hint" id="sessions-summary"></p>
+        <div id="sessions" class="sessions"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Backup</h2>
+        <p class="hint">
+          Export a JSON file with your settings and saved sessions, or restore one on another computer. Keep it private —
+          it contains page addresses.
+        </p>
+        <div class="actions">
+          <button id="export" class="btn" type="button">Export backup</button>
+          <button id="import" class="btn" type="button">Import backup…</button>
+          <input id="import-file" type="file" accept="application/json,.json" hidden />
+          <button id="reset" class="btn danger" type="button">Delete all extension data</button>
+        </div>
+        <p id="data-status" class="status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
